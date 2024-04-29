@@ -14,9 +14,31 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Discount.init({
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Discount name is require"
+        },
+        notNull: {
+          msg: "Discount name is require"
+        }
+      }
+    },
     description: DataTypes.TEXT,
-    discount_percent: DataTypes.INTEGER
+    discount_percent: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: "Discount percent is require"
+        },
+        notNull: {
+          msg: "Discount percent name is require"
+        }
+      }
+    },
   }, {
     sequelize,
     modelName: 'Discount',

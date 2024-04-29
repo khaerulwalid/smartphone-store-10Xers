@@ -1,5 +1,6 @@
 const express = require("express");
 const userRouter = require("./users")
+const discountRouter = require("./discount")
 const router = express.Router()
 
 router.get('/', (req, res) => {
@@ -7,5 +8,6 @@ router.get('/', (req, res) => {
 })
 
 router.use("/users", userRouter)
+router.use("/discounts", discountRouter)
 
 module.exports = router
