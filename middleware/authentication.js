@@ -1,3 +1,4 @@
+const { verifyToken } = require("../helper/jsonwebToken")
 const {User} = require("../models/index")
 
 const auntetication = async(req, res, next) => {
@@ -10,8 +11,9 @@ const auntetication = async(req, res, next) => {
   
       const token = authorization.split(" ")[1]
       const verified = verifyToken(token)
-  
+      
       const dataUser = await User.findByPk(verified.id)
+      
   
       if(!dataUser) {
         throw {name: "Unauthorized"}
@@ -23,7 +25,6 @@ const auntetication = async(req, res, next) => {
   
       next()
     } catch (err) {
-   
       next(err)
     }
   }

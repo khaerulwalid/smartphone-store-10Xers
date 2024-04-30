@@ -58,9 +58,14 @@ class SmartphoneController {
 
     static async deleteSmartphone(req, res, next) {
         try {
+            console.log("Masuk Delete");
             const {id} = req.params
 
             let data = await Smartphone.findByPk(id)
+
+            if(!data) {
+                throw {name: "NotFound"}
+            }
 
             await Smartphone.destroy({
                 where: {

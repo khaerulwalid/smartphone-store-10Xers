@@ -26,6 +26,10 @@ const errorHandler = (err, req, res, next) => {
             message = err.message
             status = 400
             break
+        case "NotFound":
+            message = "error not found"
+            status = 404
+            break
     }
 
     res.status(status).json({message})
